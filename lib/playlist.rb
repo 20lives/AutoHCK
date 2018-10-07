@@ -14,6 +14,10 @@ class Playlist
                                @ms_playlist)
     custom_playlist(log)
     custom_blacklist(log)
+    if log
+      @logger.info('Test session will run the following tests:')
+      @tests.each { |test| @logger.info(test['name']) }
+    end
     sort_by_duration
   end
 
