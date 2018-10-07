@@ -85,6 +85,8 @@ class VirtHCK
   def create_client_snapshot(name)
     client = @project.platform['clients'][name]
     @logger.info("Creating #{client['name']} snapshot file")
+    @logger.info("Base image: #{base}")
+    @logger.info("Target image: #{target}")
     base = "#{@project.config['images_path']}/#{client['image']}"
     target = client_snapshot(name)
     create_snapshot_cmd(base, target)
