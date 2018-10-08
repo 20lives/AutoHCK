@@ -86,6 +86,10 @@ class Tools < RToolsHCK
   def install_machine_driver_package(machine, method, driver_path, file)
     handle_results(@tools.install_machine_driver_package(machine, driver_path,
                                                          method, file))
+  rescue RToolsHCK::WinrmPSRunError
+    @logger.fatal('Client was unable to install the provider driver,'\
+                  'please check the driver is valid and signed properly')
+    raise InvalidDriver, "Provided driver wasn't installed"
   end
 
   def list_tests(key, machine, tag, playlist)
